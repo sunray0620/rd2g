@@ -2,14 +2,9 @@
 #include <ctime>
 #include <cstdlib>
 #include <cstdio>
+#include "ArrayUtil.cpp"
 
 using namespace std;
-
-void swapElement(int *array, int i, int j) {
-	int swap = array[i];
-	array[i] = array[j];
-	array[j] = swap;
-}
 
 void insertSort(int *array, int sz) {
 	for (int i=1; i<sz; ++i) {
@@ -30,13 +25,6 @@ void bubbleSort(int *array, int sz) {
 			}
 		}
 	}
-}
-
-void printArray(int *array, int sz) {
-	for(int i=0; i<sz; ++i) {
-		printf("[%d] ", array[i]);
-	}
-	cout << endl;
 }
 
 bool validateSortedArray(int *array, int sz) {
