@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdio>
+#include <cstdlib>
 
 using namespace std;
 
@@ -18,5 +19,11 @@ void printArray(int *array, int sz, int numPerRow = 10) {
 	}
 	if ( sz % numPerRow != 0 ) {
 		cout << endl;	
+	}
+}
+
+void generateRandomArray(int *array, int sz, int maxValue) {
+	for (int i=0; i<sz; ++i) {
+		array[i] = rand() % maxValue;
 	}
 }
