@@ -22,8 +22,9 @@ void printArray(int *array, int sz, int numPerRow = 10) {
 	}
 }
 
-void generateRandomArray(int *array, int sz, int maxValue) {
+void generateRandomArray(int *array, int sz, int minValue, int maxValue) {
+	int range = maxValue - minValue + 1;
 	for (int i=0; i<sz; ++i) {
-		array[i] = rand() % maxValue;
+		array[i] = rand() % range + minValue;
 	}
 }

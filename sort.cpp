@@ -8,6 +8,9 @@
 
 using namespace std;
 
+/***************************
+ * Insertion Sort
+ ***************************/
 void insertSort(int *array, int sz) {
 	for (int i=1; i<sz; ++i) {
 		int tbi = array[i];
@@ -19,6 +22,9 @@ void insertSort(int *array, int sz) {
 	}
 }
 
+/******************************
+ * Bubble Sort
+ ******************************/
 void bubbleSort(int *array, int sz) {
 	for (int i=sz-1; i>=0; --i) {
 		for (int j=0; j<i; ++j) {
@@ -29,17 +35,9 @@ void bubbleSort(int *array, int sz) {
 	}
 }
 
-bool validateSortedArray(int *array, int sz) {
-	if (sz <= 0) return false;
-	if (sz == 1) return true;
-	for (int i=1; i<sz; ++i) {
-		if (array[i] < array[i-1]) {
-			return false;
-		}
-	}
-	return true;
-}
-
+/********************************
+ * Merge Sort
+ *******************************/
 void _mergeSort(int* array, int start, int end) {
 	if (end == start) {
 		return;
@@ -74,6 +72,9 @@ void _mergeSort(int* array, int start, int end) {
 	}
 }
 
+/**********************
+ * Radix Sort
+ **********************/
 int getDigit(int input, int i) {
 	if (i < 0 || i > 8) {
 		return -1;
@@ -104,6 +105,9 @@ void radixSort(int *array, int sz) {
 	}
 }
 
+/*****************************
+ * Heap Sort
+ *****************************/
 int getParent(int child) {
 	return (child-1) / 2;
 }
@@ -156,16 +160,51 @@ void heapSort(int *array, int sz) {
 	}
 }
 
+/**********************************
+ * Count Sort
+ **********************************/
+void countSort(int *array, int sz, int maxValue) {
+	int wk[maxValue+1];
+	for(int i=0; i<=maxValue; wk[i++]=0);
+	for (int i=0; i<sz; ++i) {
+		++wk[array[i]];
+	}
+	// Calculate Accumulative Count
+	for (int i=1; i<=maxValue; ++i) {
+		wk[i] += wk[i-1];
+	}
+	//
+	int temp[sz];
+	for (int i=sz-1; i>=0; --i) {
+		temp[--wk[array[i]]] = array[i];
+	}
+	// Copy back
+	for (int i=0; i<sz; ++i) {
+		array[i] = temp[i];
+	}
+}
+
+bool validateSortedArray(int *array, int sz) {
+	if (sz <= 0) return false;
+	if (sz == 1) return true;
+	for (int i=1; i<sz; ++i) {
+		if (array[i] < array[i-1]) {
+			return false;
+		}
+	}
+	return true;
+}
+
 int main() {
 	srand(time(0));
-	int testDataSize = 100;
+	int testDataSize = 1000;
 	int testData[testDataSize];
-	generateRandomArray(testData, testDataSize, testDataSize * 100);
+	generateRandomArray(testData, testDataSize, 0, testDataSize * 10);
 
 	printArray(testData, testDataSize);
 	cout << validateSortedArray(testData, testDataSize) << endl;
 
-	heapSort(testData, testDataSize);
+	countSort(testData, testDataSize, testDataSize * 10);
 	printArray(testData, testDataSize);
 	cout << validateSortedArray(testData, testDataSize) << endl;
 	return 0;
