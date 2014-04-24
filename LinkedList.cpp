@@ -34,6 +34,7 @@ void playJosephCircle(const int numOfPlayers, const int stepSize) {
 
 int main() {
 	playJosephCircle(10, 7);
+
 	return 0;
 }
 
