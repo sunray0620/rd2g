@@ -4,6 +4,8 @@
 
 using namespace std;
 
+class ArrayUtil {
+	
 void swapElement(int *array, int i, int j) {
 	int swap = array[i];
 	array[i] = array[j];
@@ -27,4 +29,6 @@ void generateRandomArray(int *array, int sz, int minValue, int maxValue) {
 	for (int i=0; i<sz; ++i) {
 		array[i] = rand() % range + minValue;
 	}
+}
+
 }
